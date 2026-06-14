@@ -10,6 +10,10 @@ class CategoriesSeeder extends Seeder
 {
     public function run(): void
     {
+        // Remove any previously seeded broken data
+        SubCategory::query()->delete();
+        Category::query()->delete();
+
         $categories = [
             [
                 'name' => ['en' => 'Cleaning', 'ru' => 'Уборка', 'uk' => 'Прибирання'],
@@ -56,15 +60,15 @@ class CategoriesSeeder extends Seeder
         ];
 
         foreach ($categories as $categoryData) {
-            $category = Category::firstOrCreate(
-                ['name' => json_encode($categoryData['name'])],
-                ['color' => $categoryData['color']]
-            );
+            $category = Category::create([
+                'name' => $categoryData['name'],
+                'color' => $categoryData['color'],
+            ]);
 
             foreach ($categoryData['sub_categories'] as $subCategoryName) {
-                SubCategory::firstOrCreate([
+                SubCategory::create([
                     'category_id' => $category->id,
-                    'name' => json_encode($subCategoryName),
+                    'name' => $subCategoryName,
                 ]);
             }
         }
