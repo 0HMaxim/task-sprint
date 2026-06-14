@@ -12,12 +12,10 @@ RUN npm run build:client 2>/dev/null || npx vite build
 # --- Stage 2: PHP app ---
 FROM php:8.4-cli AS app
 
-# System deps + PHP extensions required by Laravel/Octane/Swoole
+# System deps + PHP extensions required by Laravel
 RUN apt-get update && apt-get install -y \
-    git unzip libpq-dev libzip-dev libicu-dev \
+    git unzip libpq-dev libzip-dev libicu-dev libsqlite3-dev \
     && docker-php-ext-install pdo pdo_pgsql pdo_sqlite zip intl \
-    && pecl install swoole \
-    && docker-php-ext-enable swoole \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Composer
@@ -44,4 +42,4 @@ EXPOSE 10000
 
 CMD php artisan migrate --force \
     && php artisan config:cache \
-    && php artisan octane:start --server=swoole --host=0.0.0.0 --port=${PORT:-10000}
+    && php artisan serve --host=0.0.0.0 --port=${PORT:-10000}
