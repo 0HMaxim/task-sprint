@@ -42,5 +42,4 @@ EXPOSE 10000
 
 CMD php artisan migrate --force \
     && php artisan db:seed --force \
-    && (test -n "$ADMIN_EMAIL" && php artisan make:admin "$ADMIN_EMAIL" || true) \
     && php artisan serve --host=0.0.0.0 --port=${PORT:-10000}
