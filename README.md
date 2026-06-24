@@ -4,7 +4,7 @@ A full-stack task marketplace platform (similar to TaskRabbit) where users can p
 
 ## Live Demo
 
-[https://task-sprint-zj8l.onrender.com](https://task-sprint-zj8l.onrender.com)
+[task-sprint-production-e5a3.up.railway.app](task-sprint-production-e5a3.up.railway.app)
 
 > Hosted on Render's free tier — the app may take 30-60 seconds to load on first visit if it has been inactive.
 
