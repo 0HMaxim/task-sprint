@@ -36,7 +36,7 @@ export default function GeneralInfo({
         email: 'itstep.kyiv@gmail.com',
         city: 'Kyiv',
         rating: '4.5',
-        birth_date: '11.12.2021',
+        birth_date: '01.09.201',
         gender: 'Male',
         certificates: [
             {

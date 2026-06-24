@@ -7,6 +7,7 @@ import { useLaravelReactI18n } from 'laravel-react-i18n';
 
 const Categories = ({ categories }: { categories: Category[] }) => {
     const { t } = useLaravelReactI18n();
+    console.log(categories.map(c => ({ id: c.id, icon: c.icon })));
 
     return (
         <div className="flex flex-col items-center gap-6 p-6">
